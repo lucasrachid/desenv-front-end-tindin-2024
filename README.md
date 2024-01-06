@@ -1,27 +1,47 @@
-# CrudAulas
+# PROJETO - CRUD AULAS
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.8.
+Projeto utilizado para teste de desenvolvedor Front-end
+Utilizado as tecnologias: Angular versão 17, Tailwhild, Primefacesng, Angular material.
 
-## Development server
+# Angular Material x Primefacesng
+Foi utilizado das duas bibliotecas, apenas para agilizar o processo de desenvolvimento, visto
+que eu já tinha experiência com Angular Material e também tive curiosidade de utilizar o Primefacesng.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+# RODAR
 
-## Code scaffolding
+Para rodar o projeto, basta dar o comando "npm i" e após rodar e baixar as dependências
+"npm start".
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Por default irá rodar na porta 4200.
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+# ESTRUTURA
+- Componentes que levam efetivamente a rotas, estão em Page.
+- Componentes que foram utilizados dentro das páginas, ou que
+podem ser reaproveitados no projeto, estão no pacote components.
+- Model, seria os modelos que representam o retorno do back.
+- Services foi dividido também em pacotes, para separar de acordo
+a responsabilidade.
 
-## Running unit tests
+# LISTA - COMPONENTES
+- Authentication -> Engloba os componentes de Registro e Acesso.
+- PageNotFound -> Para qualquer página que o usuário acessar e não existir.
+- Classes -> 
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+# ITENS que estão OK
+- Registro
+- Autenticação
+- Guardião de rotas, caso o usuário tente acessar alguma rota sem estar autenticado
+- Logout
+- Acesso a rotas que não existem na aplicação
+- Classificação de vídeo
+- Busca de vídeo
+- Filtragem da lista dos vídeos buscados. (Filtra apenas a lista dos vídeos que já foram carregados)
+- Exclusão de vídeos
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+# ITENS Faltantes 
+- Inserção
+- Edição
+- Assistir vídeo
+- Controle de progresso

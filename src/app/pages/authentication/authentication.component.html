@@ -1,0 +1,15 @@
+<div class="flex justify-center items-center h-screen">
+    <div class="p-6 rounded-lg container-auth flex-col justify-center mt-4">
+        <p-selectButton (onChange)="selectOption($event)" [options]="stateOptions" optionLabel="label"
+            optionValue="value" class="text-center">
+        </p-selectButton>
+        <div class="flex-col text-center pt-8">
+            @switch (loginOrSignUp) {
+                @case (true) { <app-sign-up /> }
+                @case (false) { <app-login /> }
+                @default { <app-login /> }
+            }
+        </div>
+
+    </div>
+</div>

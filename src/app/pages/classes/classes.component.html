@@ -1,0 +1,110 @@
+<div class="">
+    <div class="flex justify-between">
+        <div class="ml-8">
+            <h1>Aulas</h1>
+            <h2>Cadastro de Aulas</h2>
+            <div class="card flex flex-wrap justify-content-center gap-3">
+                <span class="p-input-icon-left">
+                    <i class="pi pi-search"></i>
+                    <input type="text"
+                        pInputText [(ngModel)]="inputSearch"
+                        placeholder="Procurar por..."/>
+                </span>
+            </div>
+        </div>
+        <div class="flex flex-col justify-center items-end gap-8 mr-8">
+            <p-button label="Logout" (click)="logoutUser()"></p-button>
+            <p-button label="Nova aula" (click)="newClass()"></p-button>
+        </div>
+    </div>
+
+    <div class="list-video mt-12 ml-10">
+        <div class="card flex justify-center">
+            <p-table [value]="filterList()"
+                [tableStyle]="{
+                    'min-width': '40rem',
+                    'max-width': '50rem',
+                }"
+                [paginator]="true"
+                [rows]="2"
+                [showCurrentPageReport]="true"
+                currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
+                <ng-template pTemplate="header" let-columns>
+                    <tr>
+                        <th class="text-center">
+                            Aula
+                        </th>
+                        <th class="text-center">
+                            Ação
+                        </th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-videoClasses let-columns="columns">
+                    <tr>
+                        <td class="text-center">
+                            <div class="flex justify-between">
+                                <div class="flex justify-center items-center mr-6">
+                                    <img width="140"
+                                        src="{{ videoClasses.cover || 'https://i.ibb.co/PgRMKHL/No-Image-Placeholder.png' }}">
+                                </div>
+                                <div class="flex flex-col items-start">
+
+                                    <div class="flex justify-between w-full pt-6 pb-6">
+                                        <div class="mr-12">
+                                            {{ getTitleVideo(videoClasses.title) }}
+                                        </div>
+                                        <div title="Classificação">
+                                            <p-rating [ngModel]="convertPerformance(videoClasses.performance)" [readonly]="true" [cancel]="false">
+                                            </p-rating>
+                                        </div>
+                                    </div>
+
+                                    <div class=" w-96 pt-6 pb-6">
+                                        <p class="line-clamp-2 text-justify">
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus auctor vitae sem nec volutpat. Nulla
+                                            facilisi.
+                                            Vivamus convallis, lorem non lacinia eleifend, velit purus facilisis arcu, sed molestie libero risus ac ex.
+                                        </p>
+                                    </div>
+
+                                    <div class="pt-6 pb-6">
+                                        <p-progressBar [value]="videoClasses.progress">
+                                            <ng-template pTemplate="content" let-value>
+                                                <span>{{ videoClasses.progress }}/100</span>
+                                            </ng-template>
+                                        </p-progressBar>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </td>
+                        <td>
+                            <div class="flex justify-center btn-action">
+                                <span class="cursor-pointer mr-6" title="Assistir a aula">
+                                    <i class="pi pi-play"></i>
+                                </span>
+                                <mat-menu #menu="matMenu">
+                                    <button mat-menu-item (click)="editClasse(videoClasses)">
+                                        Editar
+                                    </button>
+                                    <button mat-menu-item (click)="viewClasse(videoClasses)">
+                                        Visualizar
+                                    </button>
+                                    <button mat-menu-item (click)="deleteClasse(videoClasses._id)">
+                                        Excluir
+                                    </button>
+                                </mat-menu>
+                                <span class="cursor-pointer" title="Opções"
+                                    mat-button [matMenuTriggerFor]="menu">
+                                    <i class="pi pi-ellipsis-v"></i>
+                                </span>
+                            </div>
+                        </td>
+
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+
+</div>
