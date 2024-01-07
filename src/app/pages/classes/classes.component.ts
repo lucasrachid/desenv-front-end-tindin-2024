@@ -94,11 +94,7 @@ export class ClassesComponent implements OnInit {
     }
 
     newClass(): void {
-        const dialogRef = this.dialog.open(ModalClassComponent, {
-            data: {
-                class: null,
-            },
-        });
+        const dialogRef = this.dialog.open(ModalClassComponent);
 
         dialogRef.afterClosed().subscribe({
             next: (result) => {
@@ -111,11 +107,20 @@ export class ClassesComponent implements OnInit {
     }
 
     editClasse(data: VideoClass): void {
-        console.log(data);
-    }
+        const dialogRef = this.dialog.open(ModalClassComponent, {
+            data: {
+                class: data,
+            },
+        });
 
-    viewClasse(data: VideoClass): void {
-        console.log(data);
+        dialogRef.afterClosed().subscribe({
+            next: (result) => {
+                this.updateClassOnList(result);
+            },
+            error: (error) => {
+                this.toastr.error('', 'Erro ao criar aula');
+            }
+        });
     }
 
     deleteClasse(id: string): void {
@@ -137,7 +142,16 @@ export class ClassesComponent implements OnInit {
         this.videoClasses = [data, ...this.videoClasses];
     }
 
-    watchClass(id: string): void {
+    updateClassOnList(data: VideoClass): void {
+        this.videoClasses = this.videoClasses.map(videoClass => {
+            if (videoClass._id === data._id) {
+                return data;
+            }
+            return videoClass;
+        });
+    }
+
+    watchViewClass(id: string): void {
         const dialogRef = this.dialog.open(WatchClassComponent, {
             disableClose: true,
             data: {

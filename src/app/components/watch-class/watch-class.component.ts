@@ -47,7 +47,6 @@ export class WatchClassComponent {
                     this.dialogRef.close();
                     return;
                 }
-                console.log(videoClass);
                 this.videoClassModal = videoClass.class;
                 this.loading = false;
                 return;

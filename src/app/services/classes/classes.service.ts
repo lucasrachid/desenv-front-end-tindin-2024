@@ -36,9 +36,9 @@ export class ClassesService {
         return this.http.get<VideoClass>(`${this.apiUrl}/${this.pathClasses}/indicators`, { headers });
     }
 
-    updateClass(data: VideoClass): Observable<VideoClass> {
+    updateClass(data: VideoClass): Observable<RegisterClass> {
         const headers = this.authService.generateHeaders();
-        return this.http.put<VideoClass>(`${this.apiUrl}/${this.pathClasses}`, data, { headers });
+        return this.http.put<RegisterClass>(`${this.apiUrl}/${this.pathClasses}`, data, { headers });
     }
 
     createClass(data: VideoClass): Observable<RegisterClass> {

@@ -92,14 +92,14 @@
                                 <td>
                                     <div class="flex justify-center btn-action">
                                         <span class="cursor-pointer mr-6" title="Assistir a aula"
-                                            (click)="watchClass(videoClasses._id)">
+                                            (click)="watchViewClass(videoClasses._id)">
                                             <i class="pi pi-play"></i>
                                         </span>
                                         <mat-menu #menu="matMenu">
                                             <button mat-menu-item (click)="editClasse(videoClasses)">
                                                 Editar
                                             </button>
-                                            <button mat-menu-item (click)="viewClasse(videoClasses)">
+                                            <button mat-menu-item (click)="watchViewClass(videoClasses._id)">
                                                 Visualizar
                                             </button>
                                             <button mat-menu-item (click)="deleteClasse(videoClasses._id)">

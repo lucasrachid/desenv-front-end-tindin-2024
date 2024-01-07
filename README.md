@@ -1,9 +1,11 @@
-# PROJETO - CRUD AULAS
-
+# PROJETO - CRUD AULAS - DESENVOLVEDOR FRONT-END 2024 - TINDIN
 Projeto utilizado para teste de desenvolvedor Front-end
 Utilizado as tecnologias: Angular versão 17, Tailwhild, Primefacesng, Angular material.
 
-# Angular Material x Primefacesng
+# API UTILIZADA
+- Playground Tindin.
+
+# Angular Material e Primefacesng
 Foi utilizado das duas bibliotecas, apenas para agilizar o processo de desenvolvimento, visto
 que eu já tinha experiência com Angular Material e também tinha curiosidade de utilizar o Primefacesng para aprendizado.
 
@@ -44,10 +46,11 @@ as aulas ou deslogar da página.
     (Filtra apenas a lista dos vídeos que já foram carregados, logo, você deverá ter uma lista com 1 ou mais itens)
 - Criação de aulas
 - Exclusão de vídeos
+- Edição - Atualização dos dados da aula.
 
 # ITENS Faltantes 
-- Edição
 - Assistir vídeo
+- Controlar performance
 - Controle de progresso
 
 # ITENS que devem passar por melhorias
@@ -57,6 +60,7 @@ para dar um feedback ao usuário.
 um problema, então optei por utilizar o ngx toastr para dar feed ao usuário.
 - As telas devem passar por melhorias de layout. Particularmente consigo fazer a tela, mas não tenho muita criatividade, 
 então tentei seguir o "modelo" apresentado no vídeo, com algumas alterações.
+- Também se atentar a responsividade das telas.
 - Existem alguns comportamentos em tela que deveria ser corrigido, como ao deletar um vídeo e não ter nem um item em 
 lista, não deveria apresentar a tabela. Algo simples, mas que como não tinha muito tempo, acabei passando por cima e 
 deixando como um débito técnico.
