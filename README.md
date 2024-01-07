@@ -47,6 +47,9 @@ as aulas ou deslogar da página.
 - Criação de aulas
 - Exclusão de vídeos
 - Edição - Atualização dos dados da aula.
+- Complexidade de senha para realização de cadastro
+- Tratamento de erros na busca das aulas
+- Armazenamento do token de usuário
 
 # ITENS Faltantes 
 - Assistir vídeo

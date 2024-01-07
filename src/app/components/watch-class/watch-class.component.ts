@@ -63,6 +63,19 @@ export class WatchClassComponent {
 
     }
 
+    validatePerformanceUser(watchedTime: number, videoTime: number): number {
+        if (watchedTime >= videoTime) {
+            return 0;
+        }
+        const performance = ((videoTime - watchedTime) / videoTime) * 100;
+        return Math.max(0, Math.min(100, performance));
+    }
+
+    getYoutubeVideoId(url: string): string | null {
+        const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w\-]{11})/);
+        return match ? match[1] : null;
+    }
+
     close(): void {
         this.dialogRef.close();
     }
