@@ -31,9 +31,14 @@ export class ClassesService {
         return this.http.get<any>(`${this.apiUrl}/classes/${id}`, { headers });
     }
 
-    getClassIndicator(): Observable<VideoClass> {
+    getClassIndicator(): Observable<RegisterClass> {
         const headers = this.authService.generateHeaders();
-        return this.http.get<VideoClass>(`${this.apiUrl}/${this.pathClasses}/indicators`, { headers });
+        return this.http.get<RegisterClass>(`${this.apiUrl}/${this.pathClasses}/indicators`, { headers });
+    }
+
+    setClassIndicator(id: string): Observable<RegisterClass> {
+        const headers = this.authService.generateHeaders();
+        return this.http.post<RegisterClass>(`${this.apiUrl}/${this.pathClasses}/${id}/mine`, {}, { headers });
     }
 
     updateClass(data: VideoClass): Observable<RegisterClass> {

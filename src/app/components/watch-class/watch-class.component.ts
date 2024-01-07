@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { ClassesService } from '../../services/classes/classes.service';
@@ -7,17 +7,20 @@ import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
 import { VideoClass } from '../../model/video.classe';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { YouTubePlayerModule } from '@angular/youtube-player';
 
 @Component({
     selector: 'app-watch-class',
     standalone: true,
-    imports: [ButtonModule, ToastModule, ProgressSpinnerModule],
+    imports: [ButtonModule, ToastModule, ProgressSpinnerModule, YouTubePlayerModule],
     templateUrl: './watch-class.component.html',
     styleUrl: './watch-class.component.scss'
 })
-export class WatchClassComponent {
+export class WatchClassComponent implements OnInit {
     videoClassModal!: VideoClass;
     loading = false;
+    apiLoaded = false;
+    videoId = '';
 
     constructor(
         @Inject(MAT_DIALOG_DATA) public data: VideoClass,
@@ -26,6 +29,19 @@ export class WatchClassComponent {
         public dialogRef: MatDialogRef<ModalClassComponent>
     ) {
         this.validateClass(data);
+    }
+
+    ngOnInit(): void {
+        this.initializePlayer();
+    }
+
+    initializePlayer(): void {
+        if (!this.apiLoaded) {
+            const tag = document.createElement('script');
+            tag.src = 'https://www.youtube.com/iframe_api';
+            document.body.appendChild(tag);
+            this.apiLoaded = true;
+        }
     }
 
     validateClass(data: VideoClass): void {
@@ -48,6 +64,7 @@ export class WatchClassComponent {
                     return;
                 }
                 this.videoClassModal = videoClass.class;
+                this.videoId = this.getYoutubeVideoId(this.videoClassModal.video!);
                 this.loading = false;
                 return;
             },
@@ -71,9 +88,13 @@ export class WatchClassComponent {
         return Math.max(0, Math.min(100, performance));
     }
 
-    getYoutubeVideoId(url: string): string | null {
+    getYoutubeVideoId(url: string): string {
+        if (!url) {
+            this.toastr.error('', 'Ocorreu um erro, tente novamente');
+            return '';
+        }
         const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w\-]{11})/);
-        return match ? match[1] : null;
+        return match ? match[1] : '';
     }
 
     close(): void {

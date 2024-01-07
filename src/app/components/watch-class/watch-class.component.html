@@ -11,12 +11,11 @@
     </div>
     <div class="flex flex-col justify-center watch-class-container">
         <div class="flex justify-center">
-            <p>
-                Batata
-            </p>
+            <youtube-player [videoId]="videoId">
+            </youtube-player>
         </div>
-        <div class="flex justify-between w-56 mt-8 ml-52">
-            <p-button label="Voltar" (click)="close()">
+        <div class="flex justify-center">
+            <p-button label="Voltar" (click)="close()" class="mr-20">
             </p-button>
 
             <p-button label="Concluir" (click)="completeClass()">

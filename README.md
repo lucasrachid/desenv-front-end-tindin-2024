@@ -67,6 +67,11 @@ então tentei seguir o "modelo" apresentado no vídeo, com algumas alterações.
 - Existem alguns comportamentos em tela que deveria ser corrigido, como ao deletar um vídeo e não ter nem um item em 
 lista, não deveria apresentar a tabela. Algo simples, mas que como não tinha muito tempo, acabei passando por cima e 
 deixando como um débito técnico.
+- Desacoplar componentes, como por exemplo, criar um componente novo, apenas para a lógica dos vídeos e apresentá-lo 
+dentro do modal, isso para possibilitar a reutilização e facilitar sua manutenção posteriormente.
+- Diversos lugares, onde está colocando comparações com string, ou até mesmo setando dados em variáveis etc, era bom 
+realizar a criação de um ENUM para esses dados, isso porque caso seja alterado algum dia, será necessário apenas alterar
+onde está utilizando o enum e não alterar o valor da string em todos os locais que utiliza determinado valor.
 
 # DESCRIÇÃO DAS AULAS
 - Esse item, não achei nos end-points a propriedade a qual se referia, as vezes por um equívoco, mas de qualquer forma, 
