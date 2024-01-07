@@ -80,10 +80,12 @@ export class WatchClassComponent implements OnInit {
 
     }
 
+    testClass(event: any): void {
+        console.log(event);
+        console.log(event.target.getCurrentTime());
+    }
+
     validatePerformanceUser(watchedTime: number, videoTime: number): number {
-        if (watchedTime >= videoTime) {
-            return 0;
-        }
         const performance = ((videoTime - watchedTime) / videoTime) * 100;
         return Math.max(0, Math.min(100, performance));
     }

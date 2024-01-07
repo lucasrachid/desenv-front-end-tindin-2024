@@ -144,7 +144,7 @@ export class ClassesComponent implements OnInit {
 
     updateClassOnList(data: VideoClass): void {
         this.videoClasses = this.videoClasses.map(videoClass => {
-            if (videoClass._id === data._id) {
+            if (videoClass && videoClass._id && videoClass._id === data._id) {
                 return data;
             }
             return videoClass;

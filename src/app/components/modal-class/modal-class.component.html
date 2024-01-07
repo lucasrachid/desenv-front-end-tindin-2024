@@ -8,32 +8,32 @@
             <h2>Criar uma nova aula</h2>
         }
     </div>
-    <form [formGroup]="form" class="mt-8">
+    <form [formGroup]="form" class="mt-8" autocomplete="one-time-code">
 
         <div class="pt-4 pb-4">
             <span class="p-float-label">
-                <input pInputText id="className" formControlName="className" />
+                <input pInputText id="className" formControlName="className" autocomplete="one-time-code"/>
                 <label for="className">Nome da aula</label>
             </span>
         </div>
 
         <div class="pt-4 pb-4">
             <span class="p-float-label">
-                <input pInputText id="classDescription" formControlName="classDescription" />
+                <input pInputText id="classDescription" formControlName="classDescription" autocomplete="one-time-code"/>
                 <label for="classDescription">Descrição da aula</label>
             </span>
         </div>
 
         <div class="pt-4 pb-4">
             <span class="p-float-label">
-                <input pInputText id="coverClass" formControlName="coverClass" />
+                <input pInputText id="coverClass" formControlName="coverClass" autocomplete="one-time-code"/>
                 <label for="coverClass">Imagem de apresentação</label>
             </span>
         </div>
 
         <div class="pt-4 pb-4">
             <span class="p-float-label" title="Link vídeo Youtube">
-                <input pInputText id="urlVideoClass" formControlName="urlVideoClass" />
+                <input pInputText id="urlVideoClass" formControlName="urlVideoClass" autocomplete="one-time-code"/>
                 <label for="urlVideoClass">Vídeo de apresentação</label>
             </span>
         </div>
