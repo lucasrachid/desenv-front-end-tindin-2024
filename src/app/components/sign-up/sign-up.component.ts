@@ -19,7 +19,6 @@ import { ToastrService } from 'ngx-toastr';
 export class SignUpComponent implements OnInit {
     loading = false;
     form!: FormGroup;
-    controls!: { [key: string]: AbstractControl };
 
     constructor(
         private toastr: ToastrService,
@@ -36,8 +35,7 @@ export class SignUpComponent implements OnInit {
             name: new FormControl(''),
             email: new FormControl(''),
             password: new FormControl(''),
-        })
-        this.controls = this.form.controls;
+        });
     }
 
     submit(): void {

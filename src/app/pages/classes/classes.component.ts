@@ -14,9 +14,12 @@ import { StringUtil } from '../../utils/string.utils';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { ClassesService } from '../../services/classes/classes.service';
 import { ToastrService } from 'ngx-toastr';
-import { HttpResponse } from '@angular/common/http';
 import { ListVideoClasses } from '../../model/list.video.classes';
-import { BehaviorSubject, Observable, debounceTime, distinctUntilChanged, map } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalClassComponent } from '../../components/modal-class/modal-class.component';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { WatchClassComponent } from '../../components/watch-class/watch-class.component';
+
 
 @Component({
     selector: 'app-classes',
@@ -31,7 +34,8 @@ import { BehaviorSubject, Observable, debounceTime, distinctUntilChanged, map } 
         CommonModule,
         MatButtonModule,
         MatMenuModule,
-        ProgressBarModule
+        ProgressBarModule,
+        ProgressSpinnerModule
     ],
     templateUrl: './classes.component.html',
     styleUrl: './classes.component.scss'
@@ -39,14 +43,14 @@ import { BehaviorSubject, Observable, debounceTime, distinctUntilChanged, map } 
 export class ClassesComponent implements OnInit {
     inputSearch = '';
     loading = false;
-    loadingAction = false;
     videoClasses: VideoClass[] = [];
     cols = ['Aula', 'Ação']
 
     constructor(
         private authService: AuthenticationService,
         private classesService: ClassesService,
-        private toastr: ToastrService
+        private toastr: ToastrService,
+        public dialog: MatDialog
     ) { }
 
     ngOnInit(): void {
@@ -74,7 +78,7 @@ export class ClassesComponent implements OnInit {
     }
 
     filterList(): VideoClass[] {
-        return this.videoClasses.filter(videoClass =>
+        return this.videoClasses.filter(videoClass => videoClass !== undefined &&
             videoClass.title!.toLowerCase().includes(this.inputSearch.toLowerCase())
         );
     }
@@ -90,7 +94,20 @@ export class ClassesComponent implements OnInit {
     }
 
     newClass(): void {
+        const dialogRef = this.dialog.open(ModalClassComponent, {
+            data: {
+                class: null,
+            },
+        });
 
+        dialogRef.afterClosed().subscribe({
+            next: (result) => {
+                this.insertClassOnList(result);
+            },
+            error: (error) => {
+                this.toastr.error('', 'Erro ao criar aula');
+            }
+        });
     }
 
     editClasse(data: VideoClass): void {
@@ -102,21 +119,31 @@ export class ClassesComponent implements OnInit {
     }
 
     deleteClasse(id: string): void {
-        this.loadingAction = true;
         this.classesService.deleteClass(id).subscribe({
             next: () => {
                 this.toastr.success('', 'Aula excluída com sucesso');
                 this.removeVideoClass(id);
-                this.loadingAction = false;
             }, error: (httpResponse) => {
                 this.toastr.error('', httpResponse.error.message);
-                this.loadingAction = true;
             }
         });
     }
 
     removeVideoClass(id: string): void {
         this.videoClasses = this.videoClasses.filter(videoClass => videoClass._id !== id);
+    }
+
+    insertClassOnList(data: VideoClass): void {
+        this.videoClasses = [data, ...this.videoClasses];
+    }
+
+    watchClass(id: string): void {
+        const dialogRef = this.dialog.open(WatchClassComponent, {
+            disableClose: true,
+            data: {
+                _id: id,
+            },
+        });
     }
 
 }

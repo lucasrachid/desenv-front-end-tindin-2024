@@ -1,0 +1,26 @@
+@if(loading) {
+    <div class="w-48 h-48 flex justify-center items-center">
+        <p-progressSpinner styleClass="w-4rem h-4rem" strokeWidth="8" fill="var(--surface-ground)"
+            animationDuration=".5s"></p-progressSpinner>
+    </div>
+
+} @else {
+    <div class="flex flex-col justify-start pl-12">
+        <h3>{{ videoClassModal.title }}</h3><br>
+        <h4>Descrição da aula aqui xyz</h4>
+    </div>
+    <div class="flex flex-col justify-center watch-class-container">
+        <div class="flex justify-center">
+            <p>
+                Batata
+            </p>
+        </div>
+        <div class="flex justify-between w-56 mt-8 ml-52">
+            <p-button label="Voltar" (click)="close()">
+            </p-button>
+
+            <p-button label="Concluir" (click)="completeClass()">
+            </p-button>
+        </div>
+    </div>
+}

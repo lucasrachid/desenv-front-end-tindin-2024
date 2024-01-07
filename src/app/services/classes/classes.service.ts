@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { VideoClass } from '../../model/video.classe';
 import { AuthenticationService } from '../authentication/authentication.service';
 import { ListVideoClasses } from '../../model/list.video.classes';
+import { RegisterClass } from '../../model/register.class';
 
 @Injectable({
     providedIn: 'root'
@@ -12,6 +13,7 @@ import { ListVideoClasses } from '../../model/list.video.classes';
 export class ClassesService {
 
     apiUrl = environment.apiUrl;
+    pathClasses = 'classes';
     headers = new HttpHeaders();
 
     constructor(
@@ -21,31 +23,31 @@ export class ClassesService {
 
     getClasses(): Observable<ListVideoClasses> {
         const headers = this.authService.generateHeaders();
-        return this.http.get<ListVideoClasses>(`${this.apiUrl}/classes`, { headers });
+        return this.http.get<ListVideoClasses>(`${this.apiUrl}/${this.pathClasses}`, { headers });
     }
 
-    getClass(id: string): Observable<VideoClass> {
+    getClass(id: string): Observable<any> {
         const headers = this.authService.generateHeaders();
-        return this.http.get<VideoClass>(`${this.apiUrl}/classes/${id}`, { headers });
+        return this.http.get<any>(`${this.apiUrl}/classes/${id}`, { headers });
     }
 
     getClassIndicator(): Observable<VideoClass> {
         const headers = this.authService.generateHeaders();
-        return this.http.get<VideoClass>(`${this.apiUrl}/classes/indicators`, { headers });
+        return this.http.get<VideoClass>(`${this.apiUrl}/${this.pathClasses}/indicators`, { headers });
     }
 
     updateClass(data: VideoClass): Observable<VideoClass> {
         const headers = this.authService.generateHeaders();
-        return this.http.put<VideoClass>(`${this.apiUrl}/classes`, data, { headers });
+        return this.http.put<VideoClass>(`${this.apiUrl}/${this.pathClasses}`, data, { headers });
     }
 
-    createClass(data: VideoClass): Observable<VideoClass> {
+    createClass(data: VideoClass): Observable<RegisterClass> {
         const headers = this.authService.generateHeaders();
-        return this.http.post<VideoClass>(`${this.apiUrl}/classes`, data, { headers });
+        return this.http.post<RegisterClass>(`${this.apiUrl}/${this.pathClasses}`, data, { headers });
     }
 
     deleteClass(id: string): Observable<VideoClass> {
         const headers = this.authService.generateHeaders();
-        return this.http.delete<VideoClass>(`${this.apiUrl}/classes/${id}`, { headers });
+        return this.http.delete<VideoClass>(`${this.apiUrl}/${this.pathClasses}/${id}`, { headers });
     }
 }

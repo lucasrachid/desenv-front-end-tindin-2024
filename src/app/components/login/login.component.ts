@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, AbstractControl, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
@@ -18,7 +18,6 @@ import { ToastrService } from 'ngx-toastr';
 export class LoginComponent implements OnInit {
     loading = false;
     form!: FormGroup;
-    controls!: { [key: string]: AbstractControl };
 
     constructor(
         private authService: AuthenticationService,
@@ -34,8 +33,7 @@ export class LoginComponent implements OnInit {
         this.form = new FormGroup({
             email: new FormControl(''),
             password: new FormControl(''),
-        })
-        this.controls = this.form.controls;
+        });
     }
 
     submit(): void {

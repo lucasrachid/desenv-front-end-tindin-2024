@@ -8,4 +8,6 @@ export class VideoClass {
     __v?: number;
     progress?: number;
     performance?: number;
+    video?: string;
+    file?: string;
 }
