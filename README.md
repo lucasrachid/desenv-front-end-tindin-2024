@@ -50,11 +50,15 @@ as aulas ou deslogar da página.
 - Complexidade de senha para realização de cadastro
 - Tratamento de erros na busca das aulas
 - Armazenamento do token de usuário
-
-# ITENS Faltantes 
 - Assistir vídeo
 - Controlar performance
 - Controle de progresso
+
+# ITENS CRÍTICOS
+- Atualização dos indicadores. A lógica ficou um pouco confusa, então esse método tentei deixar comentado, da maneira que
+comecei a criar essa lógica. Porém, ainda está quebrada em diversos momentos, estava depurando e fui criando o método. 
+Então deve passar por uma refatoração e quebrar em mais métodos, cada um com sua responsabilidade e evitar a repetição 
+de código.
 
 # ITENS que devem passar por melhorias
 - Algumas telas, foi criado a variável de controle para o loading, mas ainda, não foi aplicado o componente em tela, 

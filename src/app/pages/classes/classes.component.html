@@ -78,10 +78,10 @@
                                                 </p>
                                             </div>
 
-                                            <div class="pt-6 pb-6">
+                                            <div class="pt-6 pb-6" style="width: 100%;">
                                                 <p-progressBar [value]="videoClasses.progress">
                                                     <ng-template pTemplate="content" let-value>
-                                                        <span>{{ videoClasses.progress }}/100</span>
+                                                        <span>{{ videoClasses.progress || 0 }}/100</span>
                                                     </ng-template>
                                                 </p-progressBar>
                                             </div>

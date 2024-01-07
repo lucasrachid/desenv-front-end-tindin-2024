@@ -6,6 +6,7 @@ import { VideoClass } from '../../model/video.classe';
 import { AuthenticationService } from '../authentication/authentication.service';
 import { ListVideoClasses } from '../../model/list.video.classes';
 import { RegisterClass } from '../../model/register.class';
+import { IndicatorsUpdate } from '../../model/indicators.update';
 
 @Injectable({
     providedIn: 'root'
@@ -36,9 +37,11 @@ export class ClassesService {
         return this.http.get<RegisterClass>(`${this.apiUrl}/${this.pathClasses}/indicators`, { headers });
     }
 
-    setClassIndicator(id: string): Observable<RegisterClass> {
+    setClassIndicator(id: string, objPerformance: IndicatorsUpdate): Observable<RegisterClass> {
         const headers = this.authService.generateHeaders();
-        return this.http.post<RegisterClass>(`${this.apiUrl}/${this.pathClasses}/${id}/mine`, {}, { headers });
+        return this.http.post<RegisterClass>(
+            `${this.apiUrl}/${this.pathClasses}/${id}/mine`, objPerformance, { headers }
+        );
     }
 
     updateClass(data: VideoClass): Observable<RegisterClass> {
